@@ -1,0 +1,31 @@
+def level(n):
+    i=n
+    while (i)!=0:
+        print(f'You have {i} chances to guess number')
+        try:
+            player_input = int(input(f'Guess a number between 1 and {max_val}: '))
+        except ValueError:
+            print("Invalid input please enter an integer.")
+            continue
+        if (player_input==guess):
+            print('You Guessed it right !!!')
+            break
+        if(player_input<guess):
+            print('Low, think higher number')
+        if(player_input>guess):
+            print('High, think lower number')
+        i-=1
+    if i==0:
+        print(f'You lost Number was {guess} !!! \n Restart the game to play again :)')
+import random
+print('Welcome to Number Guess Game !')
+choice=input('Select easy or hard: ').lower()
+max_val=int(input('Enter MAX value to gues: '))
+guess=random.randint(1,max_val)
+if(choice=='hard'):
+    level(5)
+if (choice== 'easy'):
+    level(10)
+    
+            
+
