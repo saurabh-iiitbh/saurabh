@@ -1,0 +1,80 @@
+# #Coffee_machine_project
+
+#price of latte=135 Rs
+#price of cappuccino =140 Rs
+#price of espresso= 170 Rs
+
+def option():
+    options = input('Enter ONN to start and OFF to power off machine: ').lower()
+    if options == 'onn':
+        print('Welcome sir')
+        choice()
+    else:
+        print('Thank you, Goodbye...')
+    exit()
+
+def choice():
+    again = 1
+    global earning
+    earning = 0
+    milk_qnt = 500
+    water_qnt = 1000
+    sugar_qnt = 450
+    cofee_qnt = 500
+
+    while again == 1:
+        cofee_type = input('Please choose Latte/Cappuccino/espresso: ').lower()
+        coin_100 = int(input('Enter number notes/coins of Rs 100: '))
+        coin_50 = int(input('Enter number notes/coins of Rs 50: '))
+        coin_20 = int(input('Enter number notes/coins of Rs 20: '))
+        user_total = (coin_100 * 100) + (coin_50 * 50) + (coin_20 * 20)
+        print(f'You have paid {user_total} Rs\n')
+
+        if cofee_type == 'latte':
+            req_milk = 80
+            req_water = 40
+            req_sugar = 60
+            req_coffee = 100
+            price = 135
+        elif cofee_type == 'cappuccino':
+            req_milk = 80
+            req_water = 40
+            req_sugar = 60
+            req_coffee = 60
+            price = 140
+        elif cofee_type == 'espresso':
+            req_milk = 100
+            req_water = 40
+            req_sugar = 70
+            req_coffee = 400
+            price = 170
+        else:
+            print("Invalid coffee type. Please try again.")
+            continue
+
+        if (milk_qnt < req_milk or water_qnt < req_water or 
+            sugar_qnt < req_sugar or cofee_qnt < req_coffee):
+            print("Sorry, not enough resources to make this drink.")
+            print(f"Available - Milk: {milk_qnt}, Water: {water_qnt}, Sugar: {sugar_qnt}, Coffee: {cofee_qnt}")
+            continue
+
+        if user_total < price:
+            print('Not enough money. Please try again.')
+            continue
+
+        print(f"Here's your {cofee_type.capitalize()} with {user_total - price} Rs change sir...")
+        earning += price
+        milk_qnt -= req_milk
+        water_qnt -= req_water
+        sugar_qnt -= req_sugar
+        cofee_qnt -= req_coffee
+
+        again = int(input('Press 1 to add more or any key to exit: '))
+
+    print('Thank you for making purchase, ENJOY!!!')
+    
+    code = int(input('Enter secret code for checking total earning: '))
+    if code == 123:
+        print(earning)
+
+option()
